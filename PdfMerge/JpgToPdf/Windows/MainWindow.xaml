@@ -1,0 +1,45 @@
+﻿<Window x:Class="PdfMerge.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PdfMerge"
+        xmlns:c="clr-namespace:Utils.Controls"
+        mc:Ignorable="d"
+        Title="Scal PDF" Height="450" Width="600">
+    <StackPanel Margin="3">
+        <!-- Picture picker -->
+        <GroupBox Header="PDF-y">
+            <StackPanel>
+                <c:FilePicker 
+                    Filters=".pdf|*.pdf"
+                    DefaultDirectory="C:\Users\%USERNAME%\Documents"
+                    Multiselect="True" Placeholder="Wybierz pliki..."
+                    Height="25" OnFilePicked="FilePicker_FilesPicked" />
+                <Label x:Name="picturesInfo" Margin="0 -3 0 0" FontWeight="DemiBold">Nie wybrano plików</Label>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Merged PDF file picker -->
+        <GroupBox Header="Scalony PDF">
+            <StackPanel>
+                <c:FilePicker
+                    IsSaveFileDialog="True"
+                    Filters=".pdf|*.pdf"
+                    DefaultDirectory="C:\Users\%USERNAME%\Documents" Placeholder="Zapisz do..." 
+                    Height="25" Margin="0 3 0 0"
+                    OnFilePicked="FilePicker_OutputFolderPicked" />
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Merge btn -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="mergeBtn" IsEnabled="False" Margin="0 10 0 0" Grid.Column="1" Click="MergeBtn_Click">Scal</Button>
+        </Grid>
+    </StackPanel>
+</Window>
